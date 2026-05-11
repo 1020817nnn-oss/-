@@ -1,0 +1,20 @@
+{
+  "name": "interface-card-motion-study",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node tests/check-demo.js && node tests/check-interaction.js"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "jsdom": "latest"
+  }
+}

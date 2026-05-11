@@ -5,8 +5,11 @@
 
 # Dependencies
 node_modules/
+.npm-cache/
 
 # Build and coverage output
+.next/
+out/
 dist/
 build/
 coverage/
