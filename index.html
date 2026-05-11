@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interface Card Motion Study</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="stage">
+      <section class="card-showcase has-selection" aria-label="Animated interface card showcase" data-selected-card="3">
+        <article
+          class="interface-card card-a"
+          data-card="1"
+          role="button"
+          tabindex="0"
+          aria-label="Select card 1"
+          aria-pressed="false"
+          style="--delay: 0ms; --z: 1"
+        >
+          <div class="card-shell">
+            <div class="card-topbar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="profile-strip">
+              <div class="avatar mint"></div>
+              <div>
+                <h2>Signal Board</h2>
+                <p>Active interface set</p>
+              </div>
+            </div>
+            <div class="meter-grid">
+              <span style="--h: 64%"></span>
+              <span style="--h: 92%"></span>
+              <span style="--h: 48%"></span>
+              <span style="--h: 76%"></span>
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="interface-card card-b"
+          data-card="2"
+          role="button"
+          tabindex="0"
+          aria-label="Select card 2"
+          aria-pressed="false"
+          style="--delay: 90ms; --z: 2"
+        >
+          <div class="card-shell">
+            <div class="card-topbar compact">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="stack-lines">
+              <i></i>
+              <i></i>
+              <i></i>
+              <i></i>
+            </div>
+            <div class="tile-row">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="interface-card card-c primary is-selected"
+          data-card="3"
+          role="button"
+          tabindex="0"
+          aria-label="Select card 3"
+          aria-pressed="true"
+          style="--delay: 180ms; --z: 3"
+        >
+          <div class="card-shell">
+            <div class="hero-panel">
+              <div class="soft-icon"></div>
+              <div>
+                <h1>Components</h1>
+                <p>Crafted motion system</p>
+              </div>
+            </div>
+            <div class="control-grid">
+              <span>Layout</span>
+              <span>Motion</span>
+              <span>Depth</span>
+              <span>Polish</span>
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="interface-card card-d"
+          data-card="4"
+          role="button"
+          tabindex="0"
+          aria-label="Select card 4"
+          aria-pressed="false"
+          style="--delay: 270ms; --z: 2"
+        >
+          <div class="card-shell">
+            <div class="timeline">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="mini-window">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+            <div class="caption-pair">
+              <strong>Variant 04</strong>
+              <small>Hover ready</small>
+            </div>
+          </div>
+        </article>
+
+        <article
+          class="interface-card card-e"
+          data-card="5"
+          role="button"
+          tabindex="0"
+          aria-label="Select card 5"
+          aria-pressed="false"
+          style="--delay: 360ms; --z: 1"
+        >
+          <div class="card-shell">
+            <div class="radar">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="chip-cloud">
+              <i>Glass</i>
+              <i>Lift</i>
+              <i>Glow</i>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
