@@ -61,7 +61,7 @@ await act(async () => {
   projectButtons[1].dispatchEvent(new window.MouseEvent("click", { bubbles: true }));
 });
 
-assert.equal(projectStage.dataset.selectedProject, "project-field-lamp", "clicking the second card should update selected project");
+assert.equal(projectStage.dataset.selectedProject, "project-shell-compact", "clicking the second card should update selected project");
 assert.equal(projectButtons[1].getAttribute("aria-pressed"), "true", "clicked project should be pressed");
 assert.equal(projectButtons[1].classList.contains("is-selected"), true, "clicked project should receive selected class");
 assert.equal(projectButtons[0].getAttribute("aria-pressed"), "false", "previous project should be unpressed");

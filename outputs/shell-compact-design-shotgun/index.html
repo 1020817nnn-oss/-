@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>仿生贝壳粉底盒 / Design Shotgun</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --graphite: #101312;
+        --graphite-2: #171d1b;
+        --ink: #f4f1e8;
+        --soft: #dfe5dc;
+        --muted: #a9b2aa;
+        --line: rgba(223, 229, 220, 0.18);
+        --titanium: #8ca79b;
+        --amber: #c8a15d;
+        --shell: #e9a8ae;
+        --shell-deep: #8d5d61;
+        --paper: #f3eee8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          "Segoe UI",
+          "Microsoft YaHei",
+          system-ui,
+          sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 78% 8%, rgba(140, 167, 155, 0.22), transparent 28rem),
+          radial-gradient(circle at 14% 34%, rgba(233, 168, 174, 0.16), transparent 24rem),
+          linear-gradient(145deg, #080a0a 0%, var(--graphite) 52%, #1c211f 100%);
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .page {
+        width: min(1280px, calc(100vw - 32px));
+        margin: 0 auto;
+        padding: 42px 0 84px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding-bottom: 34px;
+      }
+
+      .mark,
+      .eyebrow,
+      .variant-code {
+        color: var(--titanium);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .mark {
+        border: 1px solid var(--line);
+        padding: 8px 10px;
+      }
+
+      .hero {
+        display: grid;
+        min-height: 74vh;
+        grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1.18fr);
+        align-items: center;
+        gap: clamp(36px, 6vw, 84px);
+        padding: 42px 0 80px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 760px;
+        font-size: clamp(48px, 7vw, 104px);
+        line-height: 0.92;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        font-size: clamp(32px, 4.8vw, 58px);
+        line-height: 0.98;
+      }
+
+      h3 {
+        font-size: clamp(24px, 3vw, 36px);
+        line-height: 1.05;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .lead {
+        max-width: 620px;
+        margin-top: 24px;
+        color: var(--soft);
+        font-size: clamp(18px, 1.8vw, 22px);
+      }
+
+      .hero-visual {
+        position: relative;
+        min-height: 560px;
+      }
+
+      .hero-card {
+        position: absolute;
+        inset: 3% 0 auto auto;
+        width: min(720px, 100%);
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.055);
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.36);
+      }
+
+      .hero-card img {
+        width: 100%;
+        aspect-ratio: 16 / 11;
+        object-fit: cover;
+      }
+
+      .floating-note {
+        position: absolute;
+        left: 0;
+        bottom: 9%;
+        width: min(360px, 64%);
+        border: 1px solid var(--line);
+        padding: 18px;
+        background: rgba(16, 19, 18, 0.82);
+        backdrop-filter: blur(18px);
+      }
+
+      .floating-note strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--ink);
+        font-size: 18px;
+      }
+
+      .shotgun-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 34px;
+      }
+
+      .variant {
+        min-height: 760px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.045);
+        overflow: hidden;
+      }
+
+      .variant-head {
+        display: grid;
+        gap: 12px;
+        padding: 24px;
+      }
+
+      .variant-media {
+        position: relative;
+        height: 310px;
+        overflow: hidden;
+        background: #202422;
+      }
+
+      .variant-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .variant-body {
+        display: grid;
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tag-row span {
+        border: 1px solid rgba(223, 229, 220, 0.2);
+        padding: 6px 9px;
+        color: var(--soft);
+        font-size: 12px;
+      }
+
+      .mini-spec {
+        display: grid;
+        gap: 10px;
+      }
+
+      .mini-spec div {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 12px;
+        border-top: 1px solid var(--line);
+        padding-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .mini-spec span {
+        color: var(--titanium);
+        font-weight: 700;
+      }
+
+      .wireframe {
+        display: grid;
+        gap: 8px;
+        border: 1px solid rgba(223, 229, 220, 0.14);
+        padding: 12px;
+        background: rgba(0, 0, 0, 0.12);
+      }
+
+      .wire-row {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 8px;
+      }
+
+      .wire,
+      .wire-small,
+      .wire-line {
+        background: rgba(223, 229, 220, 0.12);
+      }
+
+      .wire {
+        min-height: 76px;
+      }
+
+      .wire-small {
+        min-height: 36px;
+      }
+
+      .wire-line {
+        height: 8px;
+      }
+
+      .variant-a {
+        --accent: var(--titanium);
+      }
+
+      .variant-b {
+        --accent: var(--shell);
+        background:
+          linear-gradient(180deg, rgba(233, 168, 174, 0.1), rgba(255, 255, 255, 0.04)),
+          rgba(255, 255, 255, 0.04);
+      }
+
+      .variant-c {
+        --accent: var(--amber);
+      }
+
+      .variant .variant-code,
+      .variant h3 {
+        color: var(--accent);
+      }
+
+      .recommendation {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+        gap: 28px;
+        margin-top: 72px;
+        border-top: 1px solid var(--line);
+        padding-top: 42px;
+      }
+
+      .choice-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .choice {
+        border: 1px solid var(--line);
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.045);
+      }
+
+      .choice strong {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--ink);
+      }
+
+      .asset-strip {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .asset-strip img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border: 1px solid var(--line);
+      }
+
+      @media (max-width: 960px) {
+        .hero,
+        .recommendation {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-visual {
+          min-height: auto;
+        }
+
+        .hero-card,
+        .floating-note {
+          position: static;
+          width: 100%;
+        }
+
+        .floating-note {
+          margin-top: 12px;
+        }
+
+        .shotgun-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .topbar {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .asset-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .variant {
+          min-height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <nav class="topbar">
+        <span class="mark">Design Shotgun / 02</span>
+        <span class="eyebrow">Shell Compact Portfolio Direction</span>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">仿生贝壳粉底盒</p>
+          <h1>把“打开贝壳”变成补妆动作。</h1>
+          <p class="lead">
+            这不是一个粉色装饰页，而是第二个作品集案例的视觉打法选择：
+            它要补足鼠标项目之外的 CMF、消费品包装、情绪价值与小型结构叙事。
+          </p>
+        </div>
+        <div class="hero-visual">
+          <figure class="hero-card">
+            <img src="../../public/shell-compact/shell-compact-lifestyle-scene.jpg" alt="贝壳粉底盒桌面场景" />
+          </figure>
+          <aside class="floating-note">
+            <strong>CEO Review 关键修正</strong>
+            <p>从“造型像贝壳”升级为“镜面角度、粉扑拿取、粉盘保护、卫生收纳和装饰身份被同一个开合结构组织”。</p>
+          </aside>
+        </div>
+      </section>
+
+      <section>
+        <p class="eyebrow">Three Directions</p>
+        <h2>三套落页设计方向</h2>
+        <div class="shotgun-grid">
+          <article class="variant variant-a">
+            <div class="variant-media">
+              <img src="../../public/shell-compact/shell-compact-open-hero.jpg" alt="实验室叙事方向主图" />
+            </div>
+            <div class="variant-head">
+              <span class="variant-code">A / Lab Case</span>
+              <h3>设计实验室式短案例</h3>
+              <p>最贴合当前作品集。把粉色素材放进 graphite 实验室系统里，用标注、结构拆解和小图矩阵压住甜美感。</p>
+            </div>
+            <div class="variant-body">
+              <div class="tag-row">
+                <span>Graphite</span>
+                <span>Titanium Green</span>
+                <span>Shell Pink as signal</span>
+              </div>
+              <div class="mini-spec">
+                <div><span>首屏</span><p>左侧一句话洞察，右侧打开状态大图；下方露出结构分解卡片。</p></div>
+                <div><span>页面节奏</span><p>Hero → Insight → Part stack → Details → Reflection，控制在短案例长度。</p></div>
+                <div><span>最强点</span><p>和鼠标项目风格统一，适合直接并入当前 Next.js 作品集。</p></div>
+              </div>
+              <div class="wireframe" aria-label="A 方向页面结构">
+                <span class="wire-line"></span>
+                <div class="wire-row"><span class="wire"></span><span class="wire"></span></div>
+                <span class="wire-small"></span>
+                <div class="wire-row"><span class="wire-small"></span><span class="wire-small"></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="variant variant-b">
+            <div class="variant-media">
+              <img src="../../public/shell-compact/shell-compact-editorial-poster.jpg" alt="美妆编辑方向主图" />
+            </div>
+            <div class="variant-head">
+              <span class="variant-code">B / Beauty Editorial</span>
+              <h3>美妆编辑式情绪页面</h3>
+              <p>把项目当作小型美妆品牌海报处理。大面积留白、粉色台阶、柔光静物，让作品更有商业包装感。</p>
+            </div>
+            <div class="variant-body">
+              <div class="tag-row">
+                <span>Blush Pink</span>
+                <span>Warm Porcelain</span>
+                <span>Editorial Poster</span>
+              </div>
+              <div class="mini-spec">
+                <div><span>首屏</span><p>竖版海报图做主视觉，标题像香水/美妆 campaign，弱化技术感。</p></div>
+                <div><span>页面节奏</span><p>Hero → Lifestyle → CMF → Details → Image2 补图建议。</p></div>
+                <div><span>风险</span><p>和当前作品集深色工业风割裂，需要外层框架拉回专业感。</p></div>
+              </div>
+              <div class="wireframe" aria-label="B 方向页面结构">
+                <span class="wire"></span>
+                <span class="wire-line"></span>
+                <div class="wire-row"><span class="wire-small"></span><span class="wire-small"></span></div>
+                <span class="wire-small"></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="variant variant-c">
+            <div class="variant-media">
+              <img src="../../public/shell-compact/shell-compact-presentation-board.jpg" alt="结构图谱方向主图" />
+            </div>
+            <div class="variant-head">
+              <span class="variant-code">C / Anatomy Board</span>
+              <h3>产品结构图谱式案例</h3>
+              <p>用爆炸图、三视图、零件标签和补妆动作链条来讲。它最能修复 CEO review 里“结构可信度不足”的问题。</p>
+            </div>
+            <div class="variant-body">
+              <div class="tag-row">
+                <span>Part Stack</span>
+                <span>Use Ritual</span>
+                <span>Annotation-heavy</span>
+              </div>
+              <div class="mini-spec">
+                <div><span>首屏</span><p>大标题下直接给“开合结构如何服务补妆”的四步流程。</p></div>
+                <div><span>页面节奏</span><p>Problem → Use flow → Exploded view → Component details → Missing asset plan。</p></div>
+                <div><span>风险</span><p>现有真实过程素材不足，最好补一张结构剖面或用 image2 生成辅助图。</p></div>
+              </div>
+              <div class="wireframe" aria-label="C 方向页面结构">
+                <div class="wire-row"><span class="wire-small"></span><span class="wire-small"></span></div>
+                <span class="wire"></span>
+                <div class="wire-row"><span class="wire"></span><span class="wire"></span></div>
+                <span class="wire-line"></span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="recommendation">
+        <div>
+          <p class="eyebrow">Recommendation</p>
+          <h2>推荐采用 A + C 的混合方向</h2>
+          <p class="lead">
+            用 A 的深色实验室外壳保持作品集一致性，用 C 的结构图谱补强说服力。
+            B 的美妆情绪只保留为局部图像，不让它接管整个页面。
+          </p>
+        </div>
+        <div class="choice-list">
+          <div class="choice">
+            <strong>首屏</strong>
+            <p>标题：仿生贝壳粉底盒。副标题：以贝壳开合结构组织镜面、粉盘和粉扑，让补妆动作变成可展示的小型仪式。</p>
+          </div>
+          <div class="choice">
+            <strong>核心模块</strong>
+            <p>洞察卡片、四步使用流程、零件层级、CMF 材料条、现有图像图库、AI 补图提示。</p>
+          </div>
+          <div class="choice">
+            <strong>下一步实现</strong>
+            <p>把第二个项目从 Field Lamp 替换成 Shell Compact，并给有真实图片的项目启用同一套 gallery 详情组件。</p>
+          </div>
+          <div class="asset-strip">
+            <img src="../../public/shell-compact/shell-compact-open-angle.jpg" alt="开合斜视图" />
+            <img src="../../public/shell-compact/shell-compact-puff-detail.jpg" alt="粉扑细节图" />
+            <img src="../../public/shell-compact/shell-compact-open-hero.jpg" alt="打开状态图" />
+            <img src="../../public/shell-compact/shell-compact-lifestyle-scene.jpg" alt="桌面场景图" />
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
