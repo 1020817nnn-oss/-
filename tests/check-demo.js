@@ -25,16 +25,16 @@ assert.equal(packageJson.scripts.dev, "next dev", "dev script should start Next.
 assert.equal(packageJson.scripts.build, "next build", "build script should run Next.js production build");
 assert.equal(packageJson.scripts.test, "node tests/check-demo.js && node tests/check-interaction.js", "test script should run both checks");
 
-assert.match(layout, /Industrial Design Portfolio/, "metadata title should describe the portfolio");
-assert.match(layout, /Product and industrial design portfolio/, "metadata description should describe the site");
-assert.match(layout, /lang: "en"/, "root html should use English language metadata for the current content");
+assert.match(layout, /倪俊明工业设计作品集/, "metadata title should describe the portfolio");
+assert.match(layout, /鼠标产品从手绘探索到原型验证/, "metadata description should describe the site");
+assert.match(layout, /lang: "zh-CN"/, "root html should use Chinese language metadata for the current content");
 assert.match(layout, /import "\.\/globals\.css"/, "root layout should load global styles");
 
 assert.match(page, /"use client"/, "page should remain a client component for interaction state");
 assert.match(page, /export const featuredProjects/, "page should export project data for tests and reuse");
 assert.match(page, /export const processSteps/, "page should export process data for tests and reuse");
-assert.match(page, /Product & Industrial Designer/, "hero should include the target role");
-assert.match(page, /Designing physical products from use scenario to refined form/, "hero should include positioning copy");
+assert.match(page, /工业设计作品集/, "hero should include the target role");
+assert.match(page, /从使用问题、手绘发散、模型验证到最终形态/, "hero should include positioning copy");
 assert.match(page, /aria-label": "Primary navigation"/, "navigation should be accessible");
 assert.match(page, /data-section": "hero"/, "hero section should expose a stable section marker");
 assert.match(page, /data-section": "work"/, "work section should expose a stable section marker");
@@ -45,6 +45,9 @@ assert.match(page, /data-selected-project": selectedProject/, "project area shou
 assert.match(page, /aria-pressed/, "project buttons should expose selected state");
 assert.match(page, /onKeyDown/, "project buttons should support keyboard selection");
 assert.match(page, /getTiltStyles/, "page should export a tilt helper");
+assert.match(page, /project-palm-support-mouse/, "mouse case study should be embedded as a featured project");
+assert.match(page, /掌托支撑鼠标/, "mouse case study should use Chinese project copy");
+assert.match(page, /mouse-gallery/, "project detail should render the mouse image gallery when assets exist");
 
 const projectIds = page.match(/id: "project-[a-z-]+"/g) || [];
 assert.equal(projectIds.length, 5, "homepage should define exactly five featured projects");
@@ -53,11 +56,11 @@ assert.match(page, /className: "card-line-field"/, "project cards should include
 assert.match(page, /className: "card-grid-lines"/, "project cards should include grid-line detailing");
 assert.match(page, /className: "card-signal-lines"/, "project cards should include signal-line detailing");
 
-for (const expected of ["Form Study", "CMF", "Prototype", "Ergonomics", "User Scenario", "Material Study"]) {
+for (const expected of ["形态推敲", "CMF", "Prototype", "人体工学", "User Scenario", "Material Study"]) {
   assert.match(page, new RegExp(expected), `page should include ${expected} as an industrial design keyword`);
 }
 
-for (const expected of ["Research", "Sketch", "Prototype", "Test", "Refine", "Present"]) {
+for (const expected of ["研究", "手绘", "建模", "验证", "细化", "呈现"]) {
   assert.match(page, new RegExp(`label: "${expected}"`), `process should include ${expected}`);
 }
 
@@ -68,6 +71,8 @@ assert.match(css, /\.hero-product/, "styles should include the hero product visu
 assert.match(css, /\.annotation-line/, "styles should include technical annotation lines");
 assert.match(css, /\.project-card/, "styles should include project dossier cards");
 assert.match(css, /\.project-list\[data-layout="spread"\]/, "styles should lay project cards out as a flat spread");
+assert.match(css, /\.mouse-gallery/, "styles should include the mouse process gallery");
+assert.match(css, /\.detail-hero-image/, "styles should include real product image treatment");
 assert.match(css, /\.card-line-field/, "styles should render card line-field details");
 assert.match(css, /\.card-grid-lines/, "styles should render card grid-line details");
 assert.match(css, /\.card-signal-lines/, "styles should render card signal-line details");
