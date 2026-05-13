@@ -1,0 +1,1217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Product and industrial design portfolio for selected physical product case studies.">
+  <title>Alex Chen — Industrial Design Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;650;750;850&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --graphite-950: #070909;
+      --graphite-900: #0e1211;
+      --graphite-800: #151c1a;
+      --graphite-700: #202926;
+      --paper: #f3f0e7;
+      --mist: #dfe5dc;
+      --muted: #9fa9a1;
+      --line: rgba(223, 229, 220, 0.18);
+      --line-strong: rgba(223, 229, 220, 0.34);
+      --titanium: #8fa99d;
+      --sage: #b9c7b9;
+      --amber: #c9a464;
+      --amber-soft: rgba(201, 164, 100, 0.18);
+      --panel: rgba(255, 255, 255, 0.065);
+      --panel-strong: rgba(255, 255, 255, 0.115);
+      --shadow: rgba(0, 0, 0, 0.42);
+      --radius: 2px;
+      --max: 1180px;
+      --gutter: clamp(16px, 4vw, 44px);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--graphite-950);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--paper);
+      background:
+        radial-gradient(circle at 72% 6%, rgba(143, 169, 157, 0.24), transparent 30rem),
+        radial-gradient(circle at 14% 28%, rgba(201, 164, 100, 0.14), transparent 26rem),
+        linear-gradient(145deg, #070909 0%, #101412 48%, #1a211e 100%);
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      content: "";
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, transparent, #000 8%, #000 86%, transparent);
+      opacity: 0.24;
+    }
+
+    body::after {
+      position: fixed;
+      inset: auto -12vw -22vw auto;
+      z-index: -1;
+      width: 48vw;
+      aspect-ratio: 1;
+      pointer-events: none;
+      content: "";
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(143, 169, 157, 0.18), transparent 64%);
+      filter: blur(18px);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    [contenteditable="true"]:focus {
+      outline: 2px solid var(--amber);
+      outline-offset: 4px;
+    }
+
+    .page-shell {
+      width: min(var(--max), calc(100vw - var(--gutter)));
+      margin: 0 auto;
+    }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 0;
+      backdrop-filter: blur(18px);
+    }
+
+    .brand-mark,
+    .nav-links a,
+    .eyebrow,
+    .micro-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      border: 1px solid var(--line);
+      padding: 0 10px;
+      color: var(--mist);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(14px, 3vw, 34px);
+      color: var(--mist);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 9px 0;
+    }
+
+    .nav-links a::after {
+      position: absolute;
+      right: 0;
+      bottom: 4px;
+      left: 0;
+      height: 1px;
+      content: "";
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 180ms ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .hero {
+      display: grid;
+      min-height: calc(100vh - 70px);
+      grid-template-columns: minmax(0, 0.9fr) minmax(360px, 1.1fr);
+      align-items: center;
+      gap: clamp(34px, 7vw, 92px);
+      padding: clamp(58px, 8vw, 112px) 0 clamp(42px, 7vw, 82px);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--titanium);
+    }
+
+    .designer-name {
+      margin: 0 0 10px;
+      color: var(--mist);
+      font-size: clamp(20px, 2.4vw, 34px);
+      font-weight: 750;
+      line-height: 1.08;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(48px, 8.3vw, 112px);
+      font-weight: 850;
+      line-height: 0.9;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      max-width: 860px;
+      font-size: clamp(32px, 5vw, 66px);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: clamp(26px, 3.6vw, 44px);
+      font-weight: 750;
+      line-height: 1;
+    }
+
+    h4 {
+      margin-bottom: 8px;
+      color: var(--mist);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      line-height: 1.62;
+    }
+
+    .hero-line {
+      max-width: 590px;
+      margin-top: 24px;
+      font-size: clamp(18px, 2vw, 23px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .action {
+      display: inline-flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      padding: 0 18px;
+      color: var(--paper);
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .action.primary {
+      background: var(--paper);
+      color: var(--graphite-900);
+    }
+
+    .action.secondary {
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .action:hover,
+    .action:focus-visible {
+      border-color: var(--amber);
+      transform: translateY(-2px);
+      outline: 0;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 42px;
+    }
+
+    .hero-stats div,
+    .material-chip,
+    .project-card,
+    .case-panel,
+    .process-card,
+    .about-card,
+    .contact-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .hero-stats div {
+      padding: 14px;
+    }
+
+    .hero-stats strong {
+      display: block;
+      color: var(--paper);
+      font-size: clamp(22px, 3vw, 36px);
+      line-height: 1;
+    }
+
+    .hero-stats span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .product-stage {
+      position: relative;
+      min-height: clamp(440px, 54vw, 660px);
+      perspective: 1200px;
+    }
+
+    .product-stage::before {
+      position: absolute;
+      inset: 12% 0 8%;
+      content: "";
+      border: 1px solid rgba(143, 169, 157, 0.18);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+      transform: skewY(-4deg);
+    }
+
+    .product-object {
+      --tilt-x: 0deg;
+      --tilt-y: 0deg;
+      --glow-x: 48%;
+      --glow-y: 20%;
+      position: absolute;
+      inset: 16% 10% auto 8%;
+      display: grid;
+      min-height: 360px;
+      place-items: center;
+      transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+      transform-style: preserve-3d;
+    }
+
+    .product-shell {
+      position: relative;
+      width: min(460px, 78vw);
+      aspect-ratio: 1.22;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 39% 28% 34% 22%;
+      background:
+        radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(255, 255, 255, 0.94), transparent 16%),
+        linear-gradient(135deg, rgba(239, 241, 232, 0.96), rgba(126, 151, 140, 0.74) 48%, rgba(27, 34, 31, 0.94));
+      box-shadow:
+        0 50px 130px var(--shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7),
+        inset -36px -42px 76px rgba(0, 0, 0, 0.24);
+      transform: rotate(-12deg) translateZ(42px);
+      animation: product-float 6200ms ease-in-out infinite;
+    }
+
+    .product-shell::before,
+    .product-shell::after,
+    .product-lens,
+    .product-slot {
+      position: absolute;
+      display: block;
+      content: "";
+    }
+
+    .product-shell::before {
+      inset: 17%;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+    }
+
+    .product-shell::after {
+      right: 14%;
+      bottom: 16%;
+      width: 30%;
+      height: 8%;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(14, 18, 17, 0.52);
+    }
+
+    .product-lens {
+      top: 18%;
+      left: 18%;
+      width: 21%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff, #aabeb4 34%, #18201d 68%);
+    }
+
+    .product-slot {
+      right: 18%;
+      top: 24%;
+      width: 28%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(14, 18, 17, 0.56);
+    }
+
+    .annotation {
+      position: absolute;
+      min-width: 132px;
+      border-top: 1px solid var(--line-strong);
+      color: var(--mist);
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .annotation::before {
+      position: absolute;
+      top: -4px;
+      width: 7px;
+      height: 7px;
+      border: 1px solid var(--titanium);
+      border-radius: 50%;
+      content: "";
+      background: var(--graphite-900);
+    }
+
+    .annotation.a {
+      top: 14%;
+      left: 0;
+    }
+
+    .annotation.b {
+      right: 2%;
+      top: 47%;
+    }
+
+    .annotation.c {
+      bottom: 18%;
+      left: 9%;
+    }
+
+    .material-strip {
+      position: absolute;
+      right: 0;
+      bottom: 3%;
+      display: grid;
+      width: min(360px, 86vw);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .material-chip {
+      padding: 14px;
+    }
+
+    .swatch {
+      display: block;
+      height: 46px;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: var(--chip-bg);
+    }
+
+    .material-chip strong {
+      display: block;
+      color: var(--paper);
+      font-size: 13px;
+    }
+
+    .material-chip span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .section {
+      padding: clamp(70px, 10vw, 132px) 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.84fr) minmax(280px, 0.5fr);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section-heading p:last-child {
+      max-width: 420px;
+    }
+
+    .work-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.76fr) minmax(0, 1.24fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .project-list {
+      position: sticky;
+      top: 82px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .project-card {
+      display: grid;
+      width: 100%;
+      gap: 10px;
+      padding: 18px;
+      color: var(--paper);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .project-card:hover,
+    .project-card:focus-visible,
+    .project-card.is-active {
+      border-color: rgba(143, 169, 157, 0.74);
+      background: var(--panel-strong);
+      transform: translateY(-3px);
+      outline: 0;
+    }
+
+    .project-card:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 4px;
+    }
+
+    .project-number,
+    .project-type {
+      color: var(--titanium);
+      font-size: 12px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .project-card strong {
+      font-size: 22px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag-row span {
+      border: 1px solid var(--line);
+      padding: 6px 8px;
+      color: var(--mist);
+      font-size: 11px;
+    }
+
+    .case-panel {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+      gap: 24px;
+      min-height: 100%;
+      padding: clamp(20px, 3vw, 32px);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.22);
+    }
+
+    .case-visual {
+      position: relative;
+      display: grid;
+      min-height: 420px;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .case-svg {
+      width: min(330px, 86%);
+      overflow: visible;
+      filter: drop-shadow(0 30px 46px rgba(0, 0, 0, 0.32));
+    }
+
+    .case-svg .body {
+      fill: url(#bodyGradient);
+      stroke: rgba(255, 255, 255, 0.35);
+    }
+
+    .case-svg .line {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.42);
+      stroke-width: 1.4;
+    }
+
+    .case-svg .dark {
+      fill: rgba(11, 14, 13, 0.52);
+    }
+
+    .case-number {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      color: var(--amber);
+      font-size: 56px;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .case-copy {
+      display: grid;
+      align-content: center;
+      gap: 18px;
+    }
+
+    .detail-meta,
+    .detail-columns,
+    .case-study-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .detail-meta {
+      grid-template-columns: minmax(120px, 0.42fr) minmax(0, 1fr);
+    }
+
+    .detail-columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .case-study-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .detail-meta > div,
+    .case-study-grid section,
+    .case-study-block {
+      border: 1px solid var(--line);
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .detail-meta span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--titanium);
+      font-size: 11px;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .detail-meta strong {
+      color: var(--mist);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    ul,
+    ol {
+      margin: 0;
+      padding: 0;
+    }
+
+    .case-copy ul {
+      padding-left: 18px;
+    }
+
+    .outcome {
+      border-left: 2px solid var(--amber);
+      padding-left: 14px;
+      color: var(--mist);
+    }
+
+    .process-rail {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      list-style: none;
+    }
+
+    .process-card {
+      min-height: 230px;
+      padding: 18px;
+      animation: process-rise 700ms ease both;
+      animation-delay: calc(var(--step) * 70ms);
+    }
+
+    .process-card span {
+      color: var(--amber);
+      font-size: 12px;
+    }
+
+    .process-card strong {
+      display: block;
+      margin: 44px 0 12px;
+      color: var(--paper);
+      font-size: 20px;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+      gap: 22px;
+    }
+
+    .about-card,
+    .contact-card {
+      padding: 22px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .skill-list li {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      color: var(--mist);
+    }
+
+    .contact-card {
+      display: grid;
+      gap: 8px;
+    }
+
+    .contact-card span {
+      color: var(--titanium);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .contact-card strong {
+      color: var(--paper);
+      font-size: clamp(18px, 2vw, 26px);
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid var(--line);
+      padding: 28px 0 48px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @keyframes product-float {
+      0%,
+      100% {
+        translate: 0 0;
+      }
+
+      50% {
+        translate: 0 -16px;
+      }
+    }
+
+    @keyframes process-rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero,
+      .work-layout,
+      .case-panel,
+      .section-heading,
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-list {
+        position: static;
+      }
+
+      .process-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .site-nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .hero,
+      .section {
+        padding-block: 56px;
+      }
+
+      .product-stage {
+        min-height: 440px;
+      }
+
+      .material-strip {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        width: 100%;
+        grid-template-columns: 1fr;
+        margin-top: 18px;
+      }
+
+      .detail-meta,
+      .detail-columns,
+      .case-study-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .page-shell {
+        width: min(100% - 22px, 360px);
+      }
+
+      .hero-stats,
+      .process-rail {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .action {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 1440px) {
+      :root {
+        --max: 1280px;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: dark;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-delay: 0ms !important;
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 1ms !important;
+      }
+
+      .product-object {
+        --glow-x: 48% !important;
+        --glow-y: 20% !important;
+      }
+
+      .product-shell {
+        transform: rotate(-12deg) translateZ(42px) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-nav">
+      <a class="brand-mark" href="#hero" aria-label="Back to portfolio hero">AC / ID</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div>
+          <p class="eyebrow" contenteditable="true" data-pretext>Future Craft / Design Lab / Interview Ready</p>
+          <p class="designer-name" contenteditable="true" data-pretext>Alex Chen</p>
+          <h1 contenteditable="true" data-pretext>Product &amp; Industrial Designer</h1>
+          <p class="hero-line" contenteditable="true" data-pretext>Designing physical products from use scenario to refined form.</p>
+          <div class="hero-actions" aria-label="Portfolio actions">
+            <a class="action primary" href="#work">View Selected Work</a>
+            <a class="action secondary" href="mailto:hello@portfolio.dev?subject=Resume%20Request">Request Resume</a>
+            <a class="action secondary" href="#contact">Contact</a>
+          </div>
+          <div class="hero-stats" aria-label="Portfolio summary">
+            <div><strong>03</strong><span>Featured product case studies</span></div>
+            <div><strong>06</strong><span>Stage design process</span></div>
+            <div><strong>CMF</strong><span>Form, material, and finish focus</span></div>
+          </div>
+        </div>
+
+        <div class="product-stage" aria-label="Abstract product form with technical annotations">
+          <div class="product-object" id="hero-product" role="img" aria-label="Abstract industrial product object">
+            <div class="product-shell">
+              <span class="product-lens"></span>
+              <span class="product-slot"></span>
+            </div>
+          </div>
+          <span class="annotation a">FORM 01</span>
+          <span class="annotation b">CMF STUDY</span>
+          <span class="annotation c">PROTOTYPE V03</span>
+          <div class="material-strip">
+            <div class="material-chip"><span class="swatch" style="--chip-bg:linear-gradient(135deg,#edf0e7,#879c91);"></span><strong>Titanium Sage</strong><span>Anodized calm</span></div>
+            <div class="material-chip"><span class="swatch" style="--chip-bg:linear-gradient(135deg,#151b19,#3a433f);"></span><strong>Graphite Shell</strong><span>Soft technical base</span></div>
+            <div class="material-chip"><span class="swatch" style="--chip-bg:linear-gradient(135deg,#c9a464,#695437);"></span><strong>Warm Marker</strong><span>Interaction accent</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="work">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Selected Work</p>
+            <h2 contenteditable="true" data-pretext>Three product stories, each built around scenario, constraint, and form.</h2>
+          </div>
+          <p contenteditable="true" data-pretext>Each case is structured as an interview-ready dossier: problem, goals, constraints, process, iteration, final views, and reflection.</p>
+        </div>
+
+        <div class="work-layout">
+          <div class="project-list" role="group" aria-label="Featured projects">
+            <button class="project-card is-active" type="button" data-project="orbit" aria-pressed="true" aria-current="true">
+              <span class="project-number">01</span>
+              <span class="project-type">Hybrid work device</span>
+              <strong>Orbit Desk Hub</strong>
+              <span>A compact desk device designed to reduce cable clutter and make hybrid work setups feel calmer.</span>
+              <span class="tag-row"><span>Form Study</span><span>CMF</span><span>User Scenario</span></span>
+            </button>
+            <button class="project-card" type="button" data-project="lamp" aria-pressed="false">
+              <span class="project-number">02</span>
+              <span class="project-type">Portable lighting object</span>
+              <strong>Field Lamp</strong>
+              <span>A portable lamp concept balancing soft ambient light with a confident carry gesture.</span>
+              <span class="tag-row"><span>Prototype</span><span>Ergonomics</span><span>Material Study</span></span>
+            </button>
+            <button class="project-card" type="button" data-project="carry" aria-pressed="false">
+              <span class="project-number">03</span>
+              <span class="project-type">Modular daily carry</span>
+              <strong>Carry System</strong>
+              <span>A modular carry system exploring how small tools can be stored, accessed, and visually organized.</span>
+              <span class="tag-row"><span>CMF</span><span>Prototype</span><span>Form Study</span></span>
+            </button>
+          </div>
+
+          <article class="case-panel" id="case-panel" aria-live="polite">
+            <div class="case-visual">
+              <svg class="case-svg" viewBox="0 0 420 320" aria-hidden="true">
+                <defs>
+                  <linearGradient id="bodyGradient" x1="0" x2="1" y1="0" y2="1">
+                    <stop offset="0" stop-color="#f0f2ea"></stop>
+                    <stop offset="0.54" stop-color="#82998e"></stop>
+                    <stop offset="1" stop-color="#1b2421"></stop>
+                  </linearGradient>
+                </defs>
+                <path class="body" d="M100 92 C135 42 244 40 304 88 C367 137 339 245 258 270 C174 297 76 251 68 176 C65 142 79 118 100 92Z"></path>
+                <circle class="line" cx="154" cy="132" r="42"></circle>
+                <rect class="dark" x="238" y="128" width="84" height="18" rx="9"></rect>
+                <path class="line" d="M92 216 C157 244 240 242 312 202"></path>
+              </svg>
+              <span class="case-number" id="case-number">01</span>
+            </div>
+            <div class="case-copy">
+              <p class="eyebrow" id="case-role">Industrial Designer / Rhino, KeyShot, Photoshop</p>
+              <h3 id="case-title" contenteditable="true" data-pretext>Orbit Desk Hub</h3>
+              <p id="case-statement" contenteditable="true" data-pretext>A compact desk device designed to reduce cable clutter and make hybrid work setups feel calmer.</p>
+              <div class="detail-meta">
+                <div><span>Timeline</span><strong id="case-timeline">6 weeks</strong></div>
+                <div><span>Focus</span><strong id="case-focus">Desk organization, interaction angle, and warm technical CMF</strong></div>
+              </div>
+              <section class="case-study-block"><h4>Problem</h4><p id="case-problem">Hybrid workers were adding hubs, chargers, and docks without a clear home for cables or daily touchpoints.</p></section>
+              <div class="detail-columns">
+                <section><h4>Constraints</h4><ul id="case-constraints"></ul></section>
+                <section><h4>Process</h4><ul id="case-process"></ul></section>
+              </div>
+              <div class="case-study-grid">
+                <section><h4>Goals</h4><ul id="case-goals"></ul></section>
+                <section><h4>Iteration</h4><ul id="case-iteration"></ul></section>
+                <section><h4>Final Views</h4><ul id="case-final"></ul></section>
+              </div>
+              <p class="outcome" id="case-outcome">A low-profile hub concept with a tilted interaction surface, hidden cable exit, and warm technical CMF.</p>
+              <section class="case-study-block"><h4>Reflection</h4><p id="case-reflection">The strongest direction treated the hub as furniture-scale infrastructure rather than a gadget, which made CMF and cable behavior part of the main story.</p></section>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="process">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Design Process</p>
+            <h2 contenteditable="true" data-pretext>From use context to a refined physical object.</h2>
+          </div>
+          <p contenteditable="true" data-pretext>The process is deliberately visible because recruiters need to understand design judgment, not only the final render.</p>
+        </div>
+        <ol class="process-rail">
+          <li class="process-card" style="--step:0"><span>01</span><strong>Research</strong><p>Map users, scenes, constraints, and the reason a product should exist.</p></li>
+          <li class="process-card" style="--step:1"><span>02</span><strong>Sketch</strong><p>Explore proportions, gestures, silhouettes, and product families quickly.</p></li>
+          <li class="process-card" style="--step:2"><span>03</span><strong>Prototype</strong><p>Use paper, foam, mockups, or 3D tests to make scale and ergonomics visible.</p></li>
+          <li class="process-card" style="--step:3"><span>04</span><strong>Test</strong><p>Compare handling, stability, assembly logic, and user clarity before refinement.</p></li>
+          <li class="process-card" style="--step:4"><span>05</span><strong>Refine</strong><p>Tune CMF, part lines, radii, details, and presentation hierarchy.</p></li>
+          <li class="process-card" style="--step:5"><span>06</span><strong>Present</strong><p>Build a clear design story from scenario to final physical form.</p></li>
+        </ol>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">About</p>
+            <h2 contenteditable="true" data-pretext>A portfolio built for interviews, not only for impressions.</h2>
+          </div>
+          <p contenteditable="true" data-pretext>I focus on physical product concepts, form development, CMF direction, prototyping, and presentation systems.</p>
+        </div>
+        <div class="about-grid">
+          <p class="about-card" contenteditable="true" data-pretext>My work connects user scenarios with tactile, manufacturable product language. I care about why a product should exist, how it behaves in daily use, and how its material and form choices make that behavior clear.</p>
+          <ul class="about-card skill-list">
+            <li>Industrial design</li>
+            <li>Product strategy</li>
+            <li>Sketching</li>
+            <li>Rhino</li>
+            <li>KeyShot</li>
+            <li>CMF</li>
+            <li>Prototype storytelling</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Contact</p>
+            <h2 contenteditable="true" data-pretext>Available for product and industrial design opportunities.</h2>
+          </div>
+          <p contenteditable="true" data-pretext>Send a note for project details, a resume PDF, or interview availability.</p>
+        </div>
+        <div class="contact-grid">
+          <a class="contact-card" href="mailto:hello@portfolio.dev"><span>Email</span><strong>hello@portfolio.dev</strong></a>
+          <a class="contact-card" href="mailto:hello@portfolio.dev?subject=Resume%20Request"><span>Resume</span><strong>Request PDF by email</strong></a>
+          <a class="contact-card" href="#contact"><span>Location</span><strong>Open to product / industrial design roles</strong></a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>Alex Chen — Industrial Design Portfolio</span>
+      <span>Future Craft / Design Lab / Interview Ready</span>
+    </footer>
+  </div>
+
+  <!-- FALLBACK: vendor/pretext.js missing, using CDN -->
+  <script type="module">
+    const projects = {
+      orbit: {
+        number: "01",
+        role: "Industrial Designer / Rhino, KeyShot, Photoshop",
+        title: "Orbit Desk Hub",
+        statement: "A compact desk device designed to reduce cable clutter and make hybrid work setups feel calmer.",
+        timeline: "6 weeks",
+        focus: "Desk organization, interaction angle, and warm technical CMF",
+        problem: "Hybrid workers were adding hubs, chargers, and docks without a clear home for cables or daily touchpoints.",
+        constraints: ["Small desk footprint", "Visible cable routing", "Easy one-hand interaction"],
+        process: ["Scenario mapping", "Soft block sketching", "Foam volume studies", "Refined shell direction"],
+        goals: ["Reduce visual cable noise", "Keep ports readable at a glance", "Create a calm object that can stay on display"],
+        iteration: ["Compared wedge, pebble, and rail silhouettes", "Moved the cable exit below the rear horizon line", "Softened the top surface after grip and reach checks"],
+        finalViews: ["Tilted interaction face", "Hidden rear cable channel", "Low-profile shell with soft edge breaks"],
+        outcome: "A low-profile hub concept with a tilted interaction surface, hidden cable exit, and warm technical CMF.",
+        reflection: "The strongest direction treated the hub as furniture-scale infrastructure rather than a gadget, which made CMF and cable behavior part of the main story."
+      },
+      lamp: {
+        number: "02",
+        role: "Product Designer / Sketching, Blender, KeyShot",
+        title: "Field Lamp",
+        statement: "A portable lamp concept for small apartments, balancing soft ambient light with a confident carry gesture.",
+        timeline: "4 weeks",
+        focus: "Portable lighting, grip comfort, and apartment-scale ambient glow",
+        problem: "Small-space lighting often feels either fixed and architectural or too disposable to earn a visible place in the room.",
+        constraints: ["Stable base", "Comfortable grip", "Low-cost material split"],
+        process: ["Grip studies", "Paper models", "Light cone tests", "Handle refinement"],
+        goals: ["Make the carry gesture obvious", "Balance a stable base with a light upper form", "Use material contrast to signal touch zones"],
+        iteration: ["Tested handle thickness with paper and foam wraps", "Adjusted shade height after light cone mockups", "Reduced base diameter while keeping tip resistance"],
+        finalViews: ["Handle-first side profile", "Diffused shade assembly", "Weighted base with tactile lower band"],
+        outcome: "A handle-led lamp form with a stable weighted base, diffused shade, and tactile material contrast.",
+        reflection: "The project became clearer when the handle stopped being an accessory and became the organizing feature for proportion, use, and identity."
+      },
+      carry: {
+        number: "03",
+        role: "Product & CMF Designer / Rhino, Illustrator, KeyShot",
+        title: "Carry System",
+        statement: "A modular carry system exploring how small tools can be stored, accessed, and visually organized.",
+        timeline: "7 weeks",
+        focus: "Modular storage, fast recognition, and durable daily-carry finishes",
+        problem: "Compact tools were easy to lose inside bags because similar shapes, colors, and access points created slow search moments.",
+        constraints: ["Modularity", "Durable surface finish", "Fast visual identification"],
+        process: ["Use flow study", "Module proportion tests", "Magnetic mockups", "Color coding"],
+        goals: ["Make each module identifiable in under a second", "Keep the family visually consistent", "Protect high-contact edges from early wear"],
+        iteration: ["Mapped pocket-to-desk access sequences", "Tested magnetic attachment strength with mockups", "Reworked color blocking for orientation and hierarchy"],
+        finalViews: ["Three-module family layout", "Magnetic alignment detail", "Color-coded caps and durable edge language"],
+        outcome: "A compact modular object family with readable orientation, durable finishes, and a consistent edge language.",
+        reflection: "The useful insight was that modularity depends as much on recognition and ritual as it does on attachment mechanics."
+      }
+    };
+
+    function list(items) {
+      return items.map((item) => `<li>${item}</li>`).join("");
+    }
+
+    function updateProject(key) {
+      const project = projects[key];
+      document.querySelectorAll(".project-card").forEach((button) => {
+        const active = button.dataset.project === key;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+        if (active) button.setAttribute("aria-current", "true");
+        else button.removeAttribute("aria-current");
+      });
+      document.getElementById("case-number").textContent = project.number;
+      document.getElementById("case-role").textContent = project.role;
+      document.getElementById("case-title").textContent = project.title;
+      document.getElementById("case-statement").textContent = project.statement;
+      document.getElementById("case-timeline").textContent = project.timeline;
+      document.getElementById("case-focus").textContent = project.focus;
+      document.getElementById("case-problem").textContent = project.problem;
+      document.getElementById("case-constraints").innerHTML = list(project.constraints);
+      document.getElementById("case-process").innerHTML = list(project.process);
+      document.getElementById("case-goals").innerHTML = list(project.goals);
+      document.getElementById("case-iteration").innerHTML = list(project.iteration);
+      document.getElementById("case-final").innerHTML = list(project.finalViews);
+      document.getElementById("case-outcome").textContent = project.outcome;
+      document.getElementById("case-reflection").textContent = project.reflection;
+      relayoutText();
+    }
+
+    document.querySelectorAll(".project-card").forEach((button) => {
+      button.addEventListener("click", () => updateProject(button.dataset.project));
+      button.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          updateProject(button.dataset.project);
+        }
+      });
+    });
+
+    const product = document.getElementById("hero-product");
+    product.addEventListener("pointermove", (event) => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const rect = product.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      product.style.setProperty("--tilt-y", `${((x - 0.5) * 11).toFixed(2)}deg`);
+      product.style.setProperty("--tilt-x", `${((0.5 - y) * 9).toFixed(2)}deg`);
+      product.style.setProperty("--glow-x", `${(x * 100).toFixed(1)}%`);
+      product.style.setProperty("--glow-y", `${(y * 100).toFixed(1)}%`);
+    });
+    product.addEventListener("pointerleave", () => {
+      product.style.setProperty("--tilt-x", "0deg");
+      product.style.setProperty("--tilt-y", "0deg");
+      product.style.setProperty("--glow-x", "48%");
+      product.style.setProperty("--glow-y", "20%");
+    });
+
+    let pretextApi = null;
+    try {
+      pretextApi = await import("https://esm.sh/@chenglou/pretext");
+    } catch {
+      pretextApi = null;
+    }
+
+    const prepared = new Map();
+    const textNodes = [...document.querySelectorAll("[data-pretext]")];
+
+    async function prepareText() {
+      await document.fonts.ready;
+      if (!pretextApi?.prepare) return;
+      prepared.clear();
+      textNodes.forEach((el) => {
+        const font = getComputedStyle(el).font;
+        prepared.set(el, pretextApi.prepare(el.textContent, font));
+      });
+      relayoutText();
+    }
+
+    function relayoutText() {
+      if (!pretextApi?.layout) return;
+      for (const [el, handle] of prepared) {
+        const width = Math.max(1, el.clientWidth);
+        const lineHeight = parseFloat(getComputedStyle(el).lineHeight);
+        const result = pretextApi.layout(handle, width, lineHeight);
+        if (result?.height) el.style.minHeight = `${Math.ceil(result.height)}px`;
+      }
+    }
+
+    textNodes.forEach((el) => {
+      new MutationObserver(() => {
+        if (!pretextApi?.prepare) return;
+        const font = getComputedStyle(el).font;
+        prepared.set(el, pretextApi.prepare(el.textContent, font));
+        relayoutText();
+      }).observe(el, { characterData: true, subtree: true, childList: true });
+    });
+
+    new ResizeObserver(() => relayoutText()).observe(document.body);
+    updateProject("orbit");
+    prepareText();
+  </script>
+</body>
+</html>

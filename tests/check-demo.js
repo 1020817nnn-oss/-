@@ -23,30 +23,56 @@ const css = fs.readFileSync(cssPath, "utf8");
 
 assert.equal(packageJson.scripts.dev, "next dev", "dev script should start Next.js");
 assert.equal(packageJson.scripts.build, "next build", "build script should run Next.js production build");
+assert.equal(packageJson.scripts.test, "node tests/check-demo.js && node tests/check-interaction.js", "test script should run both checks");
+
+assert.match(layout, /Industrial Design Portfolio/, "metadata title should describe the portfolio");
+assert.match(layout, /Product and industrial design portfolio/, "metadata description should describe the site");
+assert.match(layout, /lang: "en"/, "root html should use English language metadata for the current content");
 assert.match(layout, /import "\.\/globals\.css"/, "root layout should load global styles");
-assert.match(page, /"use client"/, "page should be a client component for interaction state");
-assert.match(page, /aria-label": "Animated interface card showcase"/, "showcase should have an accessible label");
-assert.match(page, /"data-selected-card": selectedCard/, "showcase should track the selected card");
 
-const cards = page.match(/id: "[1-5]"/g) || [];
-assert.equal(cards.length, 5, "showcase should render exactly five cards");
+assert.match(page, /"use client"/, "page should remain a client component for interaction state");
+assert.match(page, /export const featuredProjects/, "page should export project data for tests and reuse");
+assert.match(page, /export const processSteps/, "page should export process data for tests and reuse");
+assert.match(page, /Product & Industrial Designer/, "hero should include the target role");
+assert.match(page, /Designing physical products from use scenario to refined form/, "hero should include positioning copy");
+assert.match(page, /aria-label": "Primary navigation"/, "navigation should be accessible");
+assert.match(page, /data-section": "hero"/, "hero section should expose a stable section marker");
+assert.match(page, /data-section": "work"/, "work section should expose a stable section marker");
+assert.match(page, /data-section": "process"/, "process section should expose a stable section marker");
+assert.match(page, /data-section": "about"/, "about section should expose a stable section marker");
+assert.match(page, /data-section": "contact"/, "contact section should expose a stable section marker");
+assert.match(page, /data-selected-project": selectedProject/, "project area should track selected project");
+assert.match(page, /aria-pressed/, "project buttons should expose selected state");
+assert.match(page, /onKeyDown/, "project buttons should support keyboard selection");
+assert.match(page, /getTiltStyles/, "page should export a tilt helper");
 
-for (let index = 1; index <= 5; index += 1) {
-  assert.match(page, new RegExp(`id: "${index}"`), `card ${index} should have a stable id`);
-  assert.match(page, /"data-card": card\.id/, "cards should expose a stable data-card attribute");
-  assert.match(page, /`Select card \$\{card\.id\}`/, "cards should have selectable labels");
+const projectIds = page.match(/id: "project-[a-z-]+"/g) || [];
+assert.equal(projectIds.length, 5, "homepage should define exactly five featured projects");
+assert.match(page, /"data-layout": "spread"/, "project list should explicitly use a spread layout");
+assert.match(page, /className: "card-line-field"/, "project cards should include line-field detailing");
+assert.match(page, /className: "card-grid-lines"/, "project cards should include grid-line detailing");
+assert.match(page, /className: "card-signal-lines"/, "project cards should include signal-line detailing");
+
+for (const expected of ["Form Study", "CMF", "Prototype", "Ergonomics", "User Scenario", "Material Study"]) {
+  assert.match(page, new RegExp(expected), `page should include ${expected} as an industrial design keyword`);
 }
 
-assert.match(css, /@keyframes\s+card-rise/, "styles should include the card entrance animation");
-assert.match(css, /prefers-reduced-motion/, "styles should respect reduced motion preferences");
-assert.match(css, /backdrop-filter/, "styles should include glass-like backdrop filtering");
-assert.match(css, /position:\s*absolute/, "cards should be absolutely positioned for overlapping");
-assert.match(css, /\.interface-card\.is-selected/, "styles should include a selected card state");
-assert.match(css, /--selected-x/, "styles should let selection move a card out of the stack");
+for (const expected of ["Research", "Sketch", "Prototype", "Test", "Refine", "Present"]) {
+  assert.match(page, new RegExp(`label: "${expected}"`), `process should include ${expected}`);
+}
 
-assert.match(page, /onPointerMove/, "component should react to pointer movement for tilt");
-assert.match(page, /--tilt-x/, "component should update the tilt x custom property");
-assert.match(page, /--tilt-y/, "component should update the tilt y custom property");
-assert.match(page, /setSelectedCard/, "component should centralize card selection");
-assert.match(page, /aria-pressed/, "component should expose selection state to assistive technology");
-assert.match(page, /onKeyDown/, "component should support keyboard selection");
+assert.match(css, /:root/, "styles should define root tokens");
+assert.match(css, /--graphite/, "styles should define the graphite color token");
+assert.match(css, /--titanium/, "styles should define the titanium accent token");
+assert.match(css, /\.hero-product/, "styles should include the hero product visual");
+assert.match(css, /\.annotation-line/, "styles should include technical annotation lines");
+assert.match(css, /\.project-card/, "styles should include project dossier cards");
+assert.match(css, /\.project-list\[data-layout="spread"\]/, "styles should lay project cards out as a flat spread");
+assert.match(css, /\.card-line-field/, "styles should render card line-field details");
+assert.match(css, /\.card-grid-lines/, "styles should render card grid-line details");
+assert.match(css, /\.card-signal-lines/, "styles should render card signal-line details");
+assert.match(css, /\.process-rail/, "styles should include the design process rail");
+assert.match(css, /\.contact-grid/, "styles should include the contact grid");
+assert.match(css, /@keyframes\s+product-float/, "styles should animate the hero product form");
+assert.match(css, /@media\s+\(max-width:\s*760px\)/, "styles should include mobile layout rules");
+assert.match(css, /prefers-reduced-motion/, "styles should respect reduced motion preferences");

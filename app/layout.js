@@ -2,8 +2,8 @@ import { createElement as h } from "react";
 import "./globals.css";
 
 export const metadata = {
-  title: "Interface Card Motion Study",
-  description: "Animated interface card showcase built with Next.js.",
+  title: "Industrial Design Portfolio",
+  description: "Product and industrial design portfolio for selected physical product case studies.",
 };
 
 export default function RootLayout({ children }) {
